@@ -1,9 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto_Mono } from 'next/font/google'
 import "./globals.css";
 import ThemeProvider from "./theme-provider";
+import { WebVitals } from "./web-vitals";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  variable: '--font-roboto-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "AI Chat App",
@@ -16,8 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${inter.variable} ${roboto_mono.variable}`}>
+      <body className="font-inter">
+        <WebVitals />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

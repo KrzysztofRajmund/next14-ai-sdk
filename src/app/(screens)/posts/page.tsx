@@ -20,7 +20,7 @@ export default async function Posts() {
       <h1 className="mb-4 text-4xl font-extrabold tracking-normal lg:text-6xl">
         Your recent posts:
       </h1>
-      <div>{posts?.map((post) => <h4 key={post.id} className="shadow-sm">{post.title}</h4>)}</div>
+      <div>{posts?.map((post) => <h4 key={post.id} className="font-roboto shadow-sm">{post.title}</h4>)}</div>
     </section>
   );
 }
