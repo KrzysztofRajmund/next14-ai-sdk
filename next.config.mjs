@@ -9,7 +9,7 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  //To show fetches logs with full urls
+  //To show fetches logs with full urls and cache status
   logging: {
     fetches: {
       fullUrl: true,

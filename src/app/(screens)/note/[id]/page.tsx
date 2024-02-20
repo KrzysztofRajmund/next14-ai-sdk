@@ -1,17 +1,8 @@
 // Static routes are cached by default, whereas dynamic routes are rendered at request time, and not cached
 // generateStaticParams helps us to define the dynamic paths that should be pre-rendered at build time or server-rendered and cached (first screen/segment request)
 export async function generateStaticParams() {
-  return [{ id: "1" }, { id: "2" }];
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
 }
-
-const getNote = async (id: string) => {
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${id}`,
-  );
-
-  if (!response.ok) throw new Error("Failed to get note!");
-  return response.json();
-};
 
 export type Note = {
   id: string;
@@ -19,16 +10,27 @@ export type Note = {
   body: string;
 };
 
-export default async function Note({ params }: { params: { id: string } }) {
-  const note: Note = await getNote(params.id);
+type Params = {
+  params: { id: string };
+};
+
+const getNoteData = async (id: string) => {
+  const response = await fetch(`http://localhost:3000/api/note/${id}`);
+
+  if (!response.ok) throw new Error(`Failed to get note with id: ${id}.`);
+  const { note } = await response.json();
+  return note[0];
+};
+
+export default async function Note({ params }: Params) {
+  const note = await getNoteData(params.id);
 
   return (
     <section className="ml-10 h-screen p-4">
       <h1 className="mb-4 text-4xl font-extrabold tracking-normal lg:text-6xl">
-        Your specific note: {note.id}
+        {note?.title.toLocaleUpperCase()}
       </h1>
-      <h4 className="font-roboto shadow-sm">{note.title}</h4>
-      <span>{note.body}</span>
+      <span>{note?.body}</span>
     </section>
   );
 }
