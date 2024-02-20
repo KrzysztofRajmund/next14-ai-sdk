@@ -9,7 +9,7 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   // Display (font-display) defines how the browser behaves during download
-  display: 'swap', // Instructs the browser to use the fallback font to display the text until the custom font has fully downloaded
+  display: 'swap', // Swap instruct the browser to use the fallback font to display the text until the custom font has fully downloaded
 })
 
 const roboto_mono = Roboto_Mono({
