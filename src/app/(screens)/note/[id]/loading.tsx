@@ -1,3 +1,3 @@
 export default function Loading() {
-  return <div>Loading specific note ...</div>;
+  return <div>Loading single note ...</div>;
 }
