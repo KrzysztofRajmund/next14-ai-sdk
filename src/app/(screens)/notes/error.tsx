@@ -16,7 +16,7 @@ export default function Error({
  var a;
   return (
     <div>
-      <h2>Could not load posts {error.message ? `: ${error.message}` : '!'}</h2>
+      <h2>Could not load notes {error.message ? `: ${error.message}` : '!'}</h2>
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment

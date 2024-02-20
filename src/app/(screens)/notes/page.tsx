@@ -7,20 +7,20 @@ const getData = async () => {
   return response.json();
 };
 
-type Posts = {
+type Notes = {
   id: string;
   title: string;
 };
 
-export default async function Posts() {
-  const posts: Posts[] = await getData();
+export default async function Notes() {
+  const notes: Notes[] = await getData();
 
   return (
     <section className="h-screen p-4 ml-10">
       <h1 className="mb-4 text-4xl font-extrabold tracking-normal lg:text-6xl">
-        Your recent posts:
+        Your recent notes:
       </h1>
-      <div>{posts?.map((post) => <h4 key={post.id} className="font-roboto shadow-sm">{post.title}</h4>)}</div>
+      <div>{notes?.map((note) => <h4 key={note.id} className="font-roboto shadow-sm">{note.title}</h4>)}</div>
     </section>
   );
 }
