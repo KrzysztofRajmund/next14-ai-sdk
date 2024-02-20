@@ -26,7 +26,7 @@ export default function Home() {
           <Link href="/chat">Chat</Link>
         </Button>
         <Button variant='outline' asChild>
-          <Link href="/posts">Notes</Link>
+          <Link href="/notes">Notes</Link>
         </Button>
       </div>
     </main>
