@@ -6,6 +6,10 @@ type Note = {
 };
 
 const getNotesData = async () => {
+  // THIS IS ONLY FOR TESTING PURPOSE!
+  // Route handlers should not be used with server components in that case.
+  // Both files are already server one. Here we should just add endpoint from external sources:
+  // for instance: https://jsonplaceholder.typicode.com/posts
   const response = await fetch("http://localhost:3000/api/notes", {
     // set to dynamic page/segment
     cache: "no-store",
