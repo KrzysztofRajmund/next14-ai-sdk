@@ -9,8 +9,10 @@
    - create RESTful endpoints, giving the full control over the response (no overhead for creating and configuring a separate server)
    - great to make external API requests when extra logic needs to be added to those requests
    - they run server-side, ensuring that sensitive information never gets shipped to the browser
+   - support response streaming (for instance: in AI Chat)
 2. Server Actions:
    - they work with the Client Component and Server Components (mainly used for form submissions and data mutations)
+   - they do not support response streaming (for instance: in AI Chat)
 3. Server and Client Component relationship:
    - Client Component can be placed in Server Component
    - if Client Component imports any other components, these components become client component by default ('use client' directive it is not needed in this case) - "client boundaries"
