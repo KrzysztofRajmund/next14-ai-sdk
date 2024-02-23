@@ -37,7 +37,7 @@ const formSchema = yup.object().shape({
 
 const AddNote = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const router = useRouter();
+  const { refresh } = useRouter();
   const form = useForm<NoteForm>({
     resolver: yupResolver(formSchema),
     defaultValues: {
@@ -53,7 +53,7 @@ const AddNote = () => {
         body: JSON.stringify(values),
       });
 
-      router.refresh();
+      refresh();
       setDialogOpen(false);
       form.reset();
     } catch (error) {

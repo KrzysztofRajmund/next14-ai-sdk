@@ -1,33 +1,39 @@
 import { render, screen } from "@testing-library/react";
-import Page, { Note } from "./page";
+import Page from "./page";
+import { mockReset } from "jest-mock-extended";
+import { prismaMock } from "../../../../../jest.setup";
 
-const note: Note = {
+jest.mock("next/navigation", () => {
+  return {
+    useRouter: jest.fn(() => ({ refresh: jest.fn(), back: jest.fn() })),
+  };
+});
+
+const note1 = {
   id: "1",
-  title: "TITLE EXAMPLE",
-  body: "description example",
+  title: "Title example 1",
+  content: "Description example 1",
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () =>
-      Promise.resolve({
-        note: [
-          {
-            id: note.id,
-            title: note.title,
-            body: note.body,
-          },
-        ],
-      }),
-  }),
-) as jest.Mock;
+const defaultProps = { params: { id: note1.id } };
 
 describe("Note", () => {
-  it("shows single note title and description", async () => {
-    render(await Page({ params: { id: note.id } }));
+  beforeEach(() => {
+    mockReset(prismaMock);
+  });
 
-    expect(screen.getByText(note.title)).toBeInTheDocument();
-    expect(screen.getByText(note.body)).toBeInTheDocument();
+  it("shows single note title and description", async () => {
+    prismaMock.note.findMany.mockResolvedValue([note1]);
+
+    render(await Page(defaultProps));
+    const filteredNote = [note1].filter(
+      (x) => x.id === defaultProps.params.id,
+    )[0];
+    const { title, content } = note1;
+
+    expect(screen.getByText(title)).toBeInTheDocument();
+    expect(screen.getByText(content)).toBeInTheDocument();
   });
 });
