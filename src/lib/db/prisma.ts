@@ -1,5 +1,5 @@
-// Below code is needed, othwerwise we can receive this warning:
-// warn(prisma-client) There are already 10 instances of Prisma Client actively running.
+// Below code is needed, otherwise we can receive following warning:
+// "warn(prisma-client) There are already 10 instances of Prisma Client actively running".
 // More info in the docs: https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
 
 import { PrismaClient } from "@prisma/client";
